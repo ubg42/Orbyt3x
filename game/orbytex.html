@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <link href="/favicon.png" rel="icon" type="image/svg+xml"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Neonwarp</title>
+    <script async data-country="true"
+            data-device="true" data-pageview="true"
+            data-path="true" data-referrer="true" data-site-id="bcc653ba-0edf-4d85-ac74-31b4fb4abd0d"
+            defer
+            src="https://sum.duiker101.net/agr.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CKRYJNPLGP"></script>
+    <meta content="ca-pub-2480387246992720" name="google-adsense-account">
+    <script>
+		window.dataLayer = window.dataLayer || [];
+
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+
+		gtag('js', new Date());
+
+		gtag('config', 'G-CKRYJNPLGP');
+		window.addEventListener('message', (e) => {
+			if (e.data.type === "game_gtag") {
+				gtag('event', e.data.data.type, e.data.data.data)
+			}
+		})
+    </script>
+
+    <!-- AdInPlay   -->
+    <script>
+		aipDisplayTag = null;
+		window.aiptag = window.aiptag || { cmd: [] };
+		aiptag.cmd.display = aiptag.cmd.display || [];
+		aiptag.cmd.player = aiptag.cmd.player || [];
+
+		//CMP tool settings
+		aiptag.cmp = {
+			show: true,
+			position: "centered",  //centered, bottom
+			button: true,
+			buttonText: "Privacy settings",
+			buttonPosition: "bottom-left" //bottom-left, bottom-right, bottom-center, top-left, top-right
+		}
+		aiptag.cmd.player.push(function () {
+			aiptag.adplayer = new aipPlayer({
+				AD_WIDTH: 960,
+				AD_HEIGHT: 540,
+				AD_DISPLAY: 'fullscreen', //default, fullscreen, fill, center, modal-center
+				LOADING_TEXT: 'loading advertisement',
+				PREROLL_ELEM: document.getElementById('videoad'),
+				AIP_COMPLETE: function (state) {
+					/*******************
+					 ***** WARNING *****
+					 *******************
+				 Please do not remove the PREROLL_ELEM
+				 from the page, it will be hidden automaticly.
+					 */
+					console.log('video complete', state)
+					// alert("Video Ad Completed: " + state);
+					document.getElementById('videowrap').classList.remove('right-0', 'bottom-0');
+					document.getElementById('root').classList.remove('hidden');
+				}
+			});
+
+		});
+
+		function show_videoad() {
+			//check if the adslib is loaded correctly or blocked by adblockers etc.
+			if (typeof aiptag.adplayer !== 'undefined') {
+				document.getElementById('videowrap').classList.add('right-0', 'bottom-0');
+				document.getElementById('root').classList.add('hidden');
+				aiptag.cmd.player.push(function () {
+					aiptag.adplayer.startVideoAd();
+				});
+			} else {
+				//Adlib didnt load this could be due to an adblocker, timeout etc.
+				//Please add your script here that starts the content, this usually is the same script as added in AIP_COMPLETE.
+				// alert("Ad Could not be loaded, load your content here");
+				aiptag.adplayer.aipConfig.AIP_COMPLETE();
+			}
+		}
+
+		window.addEventListener('message', (e) => {
+			if (e.data.type === "ad") {
+				show_videoad();
+			}
+		})
+    </script>
+    <script async src="https://api.adinplay.com/libs/aiptag/pub/NON/neonwarp.com/tag.min.js"></script>
+  <script type="module" crossorigin src="/assets/index--fm8qVJG.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-D1ppRlL2.css">
+</head>
+<body>
+<div class="fixed top-0 left-0 flex items-center justify-center right-0 bottom-0" id="videowrap">
+    <div id="videoad"></div>
+</div>
+<div id="root"></div>
+<script>
+	document.getElementById('videowrap').classList.remove('right-0', 'bottom-0');
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"7521f475d67444d9a5073cbe9c33df41","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
